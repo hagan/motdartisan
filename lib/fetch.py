@@ -35,7 +35,7 @@ class ArtFetcher:
             response = client.chat.completions.create(
                 model=self.model,
                 messages=[
-                    {"role": "system", "content": "You are an ASCII artist. Create ASCII art that fits within the specified dimensions. Use only ASCII characters. Do not include any explanation or markdown formatting."},
+                    {"role": "system", "content": self._get_system_prompt()},
                     {"role": "user", "content": prompt}
                 ],
                 temperature=0.9,
@@ -59,6 +59,29 @@ class ArtFetcher:
             
         except Exception as e:
             raise Exception(f"Failed to fetch art from OpenAI: {str(e)}")
+    
+    def _get_system_prompt(self) -> str:
+        """Get the system prompt based on the style configuration"""
+        # Check for Unicode/Japanese styles
+        if "unicode" in self.style.lower() or "japanese" in self.style.lower():
+            return ("You are a Unicode text artist. Create text art using Unicode characters including "
+                   "Japanese characters (hiragana, katakana, kanji), Chinese characters, "
+                   "mathematical symbols, box-drawing characters, and other Unicode symbols. "
+                   "Create detailed, artistic representations that look like actual images when viewed. "
+                   "Do not include any explanation or markdown formatting.")
+        elif "emoji" in self.style.lower():
+            return ("You are an emoji artist. Create art using emoji characters and Unicode symbols. "
+                   "Combine emojis creatively to form pictures and scenes. "
+                   "Do not include any explanation or markdown formatting.")
+        elif "braille" in self.style.lower():
+            return ("You are a Braille pattern artist. Create art using Braille Unicode characters "
+                   "(U+2800 to U+28FF) to create detailed grayscale-like images. "
+                   "Use the density of dots to create shading effects. "
+                   "Do not include any explanation or markdown formatting.")
+        else:
+            # Default ASCII art
+            return ("You are an ASCII artist. Create ASCII art that fits within the specified dimensions. "
+                   "Use only ASCII characters. Do not include any explanation or markdown formatting.")
     
     def _generate_prompt(self) -> str:
         """Generate a random prompt based on theme and style"""
@@ -105,4 +128,15 @@ class ArtFetcher:
         theme_prompts = prompts.get(self.theme, prompts['cyberpunk'])
         base_prompt = random.choice(theme_prompts)
         
-        return f"{base_prompt}. Style: {self.style}. Maximum width: {self.width} characters. Maximum height: {self.height} lines. Use creative ASCII characters and ensure the art is visually interesting."
+        # Adjust prompt based on character set
+        if "unicode" in self.style.lower() or "japanese" in self.style.lower():
+            style_instruction = (f"Use {self.style} to create a detailed, photo-like representation. "
+                                "Mix different Unicode blocks, Japanese characters, and symbols for texture and detail.")
+        elif "emoji" in self.style.lower():
+            style_instruction = "Use emoji art style to create a colorful, expressive representation."
+        elif "braille" in self.style.lower():
+            style_instruction = "Use Braille patterns to create a detailed grayscale-like image with shading."
+        else:
+            style_instruction = f"Style: {self.style}. Use creative ASCII characters and ensure the art is visually interesting."
+        
+        return f"{base_prompt}. {style_instruction} Maximum width: {self.width} characters. Maximum height: {self.height} lines."

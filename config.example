@@ -6,7 +6,8 @@ OPENAI_MODEL=gpt-4
 
 # ASCII Art Configuration
 # Style determines the type of ASCII art generated
-# Recommended: "detailed ASCII art", "block ASCII art", "line art ASCII"
+# Traditional ASCII: "detailed ASCII art", "block ASCII art", "line art ASCII"
+# Unicode (photo-like): "japanese unicode art", "dense unicode patterns", "braille art"
 # Avoid text fonts: "pictorial ASCII art, no text or fonts"
 ASCII_STYLE=detailed ASCII art
 

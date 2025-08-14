@@ -67,16 +67,22 @@ Edit the `.env` file to customize:
   - Options: `"gpt-4"`, `"gpt-3.5-turbo"`
   
 - `ASCII_STYLE` - Art style descriptor (default: `"detailed ASCII art"`)
-  - **Recommended for actual art:**
+  - **Traditional ASCII styles:**
     - `"detailed ASCII art"` - High-quality ASCII art
     - `"block ASCII art"` - Uses block characters (█ ▀ ▄)
     - `"line art ASCII"` - Uses line characters (─ │ ┌ ┐)
     - `"shaded ASCII art"` - Uses shading (░ ▒ ▓)
     - `"classic ASCII art"` - Traditional ASCII
     - `"minimalist ASCII"` - Simple, clean designs
+  - **Unicode styles (more detailed, photo-like):**
+    - `"unicode art"` - Mixed Unicode characters for detail
+    - `"japanese unicode art"` - Uses Japanese characters (あ漢字カナ) for texture
+    - `"dense unicode patterns"` - Complex Unicode symbols
+    - `"braille art"` - Braille patterns for grayscale effects (⠿⡿⣿)
+    - `"emoji art"` - Creative emoji combinations 🎨
   - **To avoid text/fonts:**
     - `"pictorial ASCII art, no text or fonts"`
-    - `"visual ASCII art scene, avoid letters"`
+    - `"visual art scene, avoid letters"`
   
 - `THEME` - Content theme (default: `"cyberpunk"`)
   - Options: `"cyberpunk"`, `"nature"`, `"abstract"`, `"retro"`, `"space"`, `"fantasy"`
