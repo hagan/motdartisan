@@ -1,6 +1,6 @@
-# ASCII Login Art
+# MOTD Artisan
 
-A shell module that displays random ASCII art on login using OpenAI's API.
+Message of the Day Artisan - A shell module that displays beautiful ASCII art on terminal login using OpenAI's API.
 
 ## Features
 
@@ -16,7 +16,7 @@ A shell module that displays random ASCII art on login using OpenAI's API.
 
 ```bash
 cd ~/.config
-git submodule add https://github.com/yourusername/ascii-login.git
+git submodule add https://github.com/yourusername/motdartisan.git
 git submodule init
 git submodule update
 ```
@@ -37,9 +37,9 @@ cp config.example .env
 
 2. Add to your shell startup (~/.config/zsh/.zshrc):
 ```bash
-# ASCII Login Art
-if [[ -f "$HOME/.config/ascii-login/ascii-login.sh" ]]; then
-    source "$HOME/.config/ascii-login/ascii-login.sh"
+# MOTD Artisan
+if [[ -f "$HOME/.config/motdartisan/motdartisan.sh" ]]; then
+    source "$HOME/.config/motdartisan/motdartisan.sh"
 fi
 ```
 
@@ -49,10 +49,10 @@ The module will automatically display ASCII art on login.
 
 ### Manual Commands
 
-- `ascii-login-fetch` - Fetch new ASCII art from OpenAI
-- `ascii-login-show` - Display random cached art
-- `ascii-login-clear-cache` - Clear the art cache
-- `ascii-login-list` - List cached art pieces
+- `motd-fetch` - Fetch new ASCII art from OpenAI
+- `motd-show` - Display random cached art
+- `motd-clear` - Clear the art cache
+- `motd-list` - List cached art pieces
 
 ## Configuration Options
 

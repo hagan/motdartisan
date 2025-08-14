@@ -1,37 +1,37 @@
 #!/bin/bash
-# ASCII Login Art Shell Wrapper
+# MOTD Artisan Shell Wrapper
 
 # Get the directory where this script is located
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 # Export functions for shell use
-ascii-login-fetch() {
+motd-fetch() {
     python3 "$SCRIPT_DIR/main.py" fetch "$@"
 }
 
-ascii-login-show() {
+motd-show() {
     python3 "$SCRIPT_DIR/main.py" show "$@"
 }
 
-ascii-login-list() {
+motd-list() {
     python3 "$SCRIPT_DIR/main.py" list
 }
 
-ascii-login-clear-cache() {
+motd-clear() {
     python3 "$SCRIPT_DIR/main.py" clear
 }
 
 # Auto-display on login (only if interactive shell)
 if [[ $- == *i* ]]; then
     # Check if we should display art on login
-    if [[ -z "$ASCII_LOGIN_SHOWN" ]]; then
-        export ASCII_LOGIN_SHOWN=1
+    if [[ -z "$MOTD_ARTISAN_SHOWN" ]]; then
+        export MOTD_ARTISAN_SHOWN=1
         python3 "$SCRIPT_DIR/main.py" login 2>/dev/null
     fi
 fi
 
 # Export the functions
-export -f ascii-login-fetch
-export -f ascii-login-show
-export -f ascii-login-list
-export -f ascii-login-clear-cache
+export -f motd-fetch
+export -f motd-show
+export -f motd-list
+export -f motd-clear

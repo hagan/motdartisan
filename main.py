@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Main entry point for ASCII Login Art"""
+"""Main entry point for MOTD Artisan"""
 
 import click
 import sys
@@ -19,7 +19,7 @@ if env_file.exists():
 
 @click.group()
 def cli():
-    """ASCII Login Art - Display beautiful ASCII art on terminal login"""
+    """MOTD Artisan - Display beautiful ASCII art as Message of the Day"""
     pass
 
 @cli.command()
