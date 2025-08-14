@@ -1,0 +1,18 @@
+# OpenAI Configuration
+OPENAI_API_KEY=your-api-key-here
+OPENAI_MODEL=gpt-4
+
+# ASCII Art Configuration
+ASCII_STYLE=retro computer terminal
+ASCII_WIDTH=80
+ASCII_HEIGHT=24
+CACHE_SIZE=10
+AUTO_FETCH=true
+
+# Themes for art generation
+# Options: cyberpunk, nature, abstract, retro, space, fantasy
+THEME=cyberpunk
+
+# Display Configuration
+DISPLAY_COLOR=true
+RANDOM_COLOR=false
