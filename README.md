@@ -57,6 +57,11 @@ The module will automatically display ASCII art on login.
   - Use `-i ID` to show specific art
   - Use `-b` for bordered display
   - Use `-c` for centered display
+- `motd-import FILE` - Import custom ASCII art from file
+  - Use `-i ID` to set custom ID (default: auto-generated)
+  - Use `-d "description"` to add description
+  - Use `-t theme` to set theme (default: custom)
+  - Use `-s style` to set style (default: ASCII art)
 - `motd-delete ID` - Delete specific art by ID
   - Shows preview before deletion
   - Use `-f` to skip confirmation
@@ -175,6 +180,51 @@ motd-delete -f 392c621a
 # Clear entire cache (with confirmation)
 motd-clear
 ```
+
+## Adding Custom ASCII Art
+
+### Easy Method: Using Import Command
+
+```bash
+# Import with auto-generated ID
+motd-import myart.txt
+
+# Import with custom ID and description
+motd-import myart.txt -i company_logo -d "Company ASCII logo"
+
+# Import with full metadata
+motd-import myart.txt -i mylogo -d "Custom logo" -t corporate -s "ANSI color art"
+```
+
+### Manual Method
+
+You can also add art files directly to the cache:
+
+1. **Create your ASCII art file** in `cache/` directory:
+   ```bash
+   vim ~/.config/motdartisan/cache/myart.txt
+   ```
+
+2. **Create a metadata JSON file** with the same ID:
+   ```json
+   {
+     "id": "myart",
+     "created": "2025-08-13T20:48:00.000000",
+     "prompt": "Description of your art",
+     "theme": "custom",
+     "style": "ASCII art"
+   }
+   ```
+
+3. **Update cache/metadata.json** - add your entry to the "items" array
+
+Your custom art will now appear in `motd-list` and can be displayed with `motd-show -i myart`.
+
+**Supported formats:**
+- Plain ASCII text
+- ANSI color codes (for colored art)
+- Unicode characters
+- Emoji art
 
 ## Directory Structure
 

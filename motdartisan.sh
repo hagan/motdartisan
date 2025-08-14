@@ -39,6 +39,10 @@ motd-clear() {
     python3 "$SCRIPT_DIR/main.py" clear
 }
 
+motd-import() {
+    python3 "$SCRIPT_DIR/import_art.py" "$@"
+}
+
 # Auto-display on login (only if interactive shell)
 if [[ $- == *i* ]]; then
     # Check if we should display art on login
