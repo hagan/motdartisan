@@ -1,18 +1,33 @@
 # OpenAI Configuration
+# Get your API key from: https://platform.openai.com/api-keys
 OPENAI_API_KEY=your-api-key-here
+# Model options: gpt-4, gpt-3.5-turbo
 OPENAI_MODEL=gpt-4
 
 # ASCII Art Configuration
-ASCII_STYLE=retro computer terminal
+# Style determines the type of ASCII art generated
+# Recommended: "detailed ASCII art", "block ASCII art", "line art ASCII"
+# Avoid text fonts: "pictorial ASCII art, no text or fonts"
+ASCII_STYLE=detailed ASCII art
+
+# Dimensions for the ASCII art (adjust to your terminal size)
 ASCII_WIDTH=80
 ASCII_HEIGHT=24
+
+# Cache Configuration
+# Number of art pieces to store locally
 CACHE_SIZE=10
+# Automatically fetch new art when cache is empty
 AUTO_FETCH=true
 
-# Themes for art generation
+# Theme Configuration
+# Content theme for art generation
 # Options: cyberpunk, nature, abstract, retro, space, fantasy
+# Each theme has different prompt variations
 THEME=cyberpunk
 
 # Display Configuration
+# Enable colored output (set false for monochrome terminals)
 DISPLAY_COLOR=true
+# Use random colors instead of theme colors
 RANDOM_COLOR=false

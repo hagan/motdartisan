@@ -58,14 +58,49 @@ The module will automatically display ASCII art on login.
 
 Edit the `.env` file to customize:
 
+### Required Settings
 - `OPENAI_API_KEY` - Your OpenAI API key (required)
-- `OPENAI_MODEL` - Model to use (default: "gpt-4")
-- `ASCII_STYLE` - Art style (default: "retro computer terminal")
-- `ASCII_WIDTH` - Max width in characters (default: 80)
-- `ASCII_HEIGHT` - Max height in lines (default: 24)
-- `CACHE_SIZE` - Number of art pieces to cache (default: 10)
-- `AUTO_FETCH` - Fetch new art if cache is empty (default: true)
-- `THEME` - Theme for art generation (default: "cyberpunk")
+  - Get one from https://platform.openai.com/api-keys
+
+### Art Generation Settings
+- `OPENAI_MODEL` - Model to use (default: `"gpt-4"`)
+  - Options: `"gpt-4"`, `"gpt-3.5-turbo"`
+  
+- `ASCII_STYLE` - Art style descriptor (default: `"detailed ASCII art"`)
+  - **Recommended for actual art:**
+    - `"detailed ASCII art"` - High-quality ASCII art
+    - `"block ASCII art"` - Uses block characters (█ ▀ ▄)
+    - `"line art ASCII"` - Uses line characters (─ │ ┌ ┐)
+    - `"shaded ASCII art"` - Uses shading (░ ▒ ▓)
+    - `"classic ASCII art"` - Traditional ASCII
+    - `"minimalist ASCII"` - Simple, clean designs
+  - **To avoid text/fonts:**
+    - `"pictorial ASCII art, no text or fonts"`
+    - `"visual ASCII art scene, avoid letters"`
+  
+- `THEME` - Content theme (default: `"cyberpunk"`)
+  - Options: `"cyberpunk"`, `"nature"`, `"abstract"`, `"retro"`, `"space"`, `"fantasy"`
+  - Each theme has different prompt variations
+
+### Display Settings  
+- `ASCII_WIDTH` - Max width in characters (default: `80`)
+  - Standard terminal width, adjust for your terminal
+  
+- `ASCII_HEIGHT` - Max height in lines (default: `24`)  
+  - Adjust based on terminal size and preference
+
+- `DISPLAY_COLOR` - Enable colored output (default: `true`)
+  - Set to `false` for monochrome terminals
+  
+- `RANDOM_COLOR` - Use random colors each time (default: `false`)
+  - When `true`, ignores theme colors
+
+### Cache Settings
+- `CACHE_SIZE` - Number of art pieces to cache (default: `10`)
+  - Higher values = more variety, more disk space
+  
+- `AUTO_FETCH` - Fetch new art if cache empty (default: `true`)
+  - Set to `false` to prevent automatic API calls
 
 ## Directory Structure
 
