@@ -31,6 +31,10 @@ motd-list() {
     python3 "$SCRIPT_DIR/main.py" list
 }
 
+motd-delete() {
+    python3 "$SCRIPT_DIR/main.py" delete "$@"
+}
+
 motd-clear() {
     python3 "$SCRIPT_DIR/main.py" clear
 }

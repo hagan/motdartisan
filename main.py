@@ -115,6 +115,45 @@ def list():
         sys.exit(1)
 
 @cli.command()
+@click.argument('art_id')
+@click.option('--force', '-f', is_flag=True, help='Skip confirmation prompt')
+def delete(art_id, force):
+    """Delete specific ASCII art by ID from cache"""
+    try:
+        cache = ArtCache()
+        
+        # Check if art exists
+        art = cache.get_art_by_id(art_id)
+        if not art:
+            click.echo(f"Art with ID {art_id} not found", err=True)
+            sys.exit(1)
+        
+        # Show preview of what will be deleted
+        click.echo(f"Deleting art with ID: {art_id}")
+        click.echo("-" * 40)
+        # Show first 5 lines as preview
+        lines = art.split('\n')[:5]
+        for line in lines:
+            click.echo(line)
+        if len(art.split('\n')) > 5:
+            click.echo("...")
+        click.echo("-" * 40)
+        
+        # Confirm deletion (skip if force flag is set)
+        if force or click.confirm('Do you want to delete this art?'):
+            if cache.delete_art_by_id(art_id):
+                click.echo(f"Art {art_id} deleted successfully")
+            else:
+                click.echo(f"Failed to delete art {art_id}", err=True)
+                sys.exit(1)
+        else:
+            click.echo("Deletion cancelled")
+        
+    except Exception as e:
+        click.echo(f"Error: {e}", err=True)
+        sys.exit(1)
+
+@cli.command()
 @click.confirmation_option(prompt='Are you sure you want to clear the cache?')
 def clear():
     """Clear all cached ASCII art"""

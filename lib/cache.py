@@ -115,6 +115,20 @@ class ArtCache:
         if meta_file.exists():
             meta_file.unlink()
     
+    def delete_art_by_id(self, art_id: str) -> bool:
+        """Delete specific art by ID from cache"""
+        # Find the item in metadata
+        for i, item in enumerate(self.metadata['items']):
+            if item['id'] == art_id:
+                # Remove from metadata
+                self.metadata['items'].pop(i)
+                # Remove files
+                self._remove_art(art_id)
+                # Save updated metadata
+                self._save_metadata()
+                return True
+        return False
+    
     def clear_cache(self):
         """Clear all cached art"""
         for item in self.metadata['items']:

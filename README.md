@@ -57,7 +57,10 @@ The module will automatically display ASCII art on login.
   - Use `-i ID` to show specific art
   - Use `-b` for bordered display
   - Use `-c` for centered display
-- `motd-clear` - Clear the art cache
+- `motd-delete ID` - Delete specific art by ID
+  - Shows preview before deletion
+  - Use `-f` to skip confirmation
+- `motd-clear` - Clear ALL art from cache (requires confirmation)
 - `motd-list` - List cached art pieces with metadata
 
 ## Configuration Options
@@ -148,7 +151,7 @@ motd-fetch -p "Create art using Japanese kanji 龍火山水風 and hiragana あ�
 motd-fetch -p "Create a sunset scene using only emoji characters 🌅🌊🏖️"
 ```
 
-### Display Options
+### Display and Management
 
 ```bash
 # Show specific art by ID
@@ -159,6 +162,18 @@ motd-show -b
 
 # Center the art on screen
 motd-show -c
+
+# List all cached art with IDs
+motd-list
+
+# Delete specific art by ID (with confirmation)
+motd-delete 392c621a
+
+# Delete without confirmation
+motd-delete -f 392c621a
+
+# Clear entire cache (with confirmation)
+motd-clear
 ```
 
 ## Directory Structure
