@@ -1,13 +1,15 @@
 # MOTD Artisan
 
-Message of the Day Artisan - A shell module that displays beautiful ASCII art on terminal login using OpenAI's API.
+Message of the Day Artisan - A shell module that displays beautiful ASCII and Unicode art on terminal login using OpenAI's API.
 
 ## Features
 
-- Generates ASCII art using OpenAI API
+- Generates ASCII and Unicode art using OpenAI API
+- Supports traditional ASCII, Japanese characters, Braille patterns, and emoji art
 - Caches art locally to minimize API calls
 - Rotates through cached art on each login
-- Configurable themes and styles
+- Configurable themes and styles (cyberpunk, fantasy, nature, etc.)
+- ZSH and Bash compatible
 - Easy integration with shell startup
 
 ## Installation
@@ -16,7 +18,7 @@ Message of the Day Artisan - A shell module that displays beautiful ASCII art on
 
 ```bash
 cd ~/.config
-git submodule add https://github.com/yourusername/motdartisan.git
+git submodule add https://github.com/hagan/motdartisan.git
 git submodule init
 git submodule update
 ```
@@ -50,9 +52,13 @@ The module will automatically display ASCII art on login.
 ### Manual Commands
 
 - `motd-fetch` - Fetch new ASCII art from OpenAI
+  - Use `-p "custom prompt"` for specific requests
 - `motd-show` - Display random cached art
+  - Use `-i ID` to show specific art
+  - Use `-b` for bordered display
+  - Use `-c` for centered display
 - `motd-clear` - Clear the art cache
-- `motd-list` - List cached art pieces
+- `motd-list` - List cached art pieces with metadata
 
 ## Configuration Options
 
@@ -108,22 +114,69 @@ Edit the `.env` file to customize:
 - `AUTO_FETCH` - Fetch new art if cache empty (default: `true`)
   - Set to `false` to prevent automatic API calls
 
+## Examples
+
+### Using Different Art Styles
+
+```bash
+# Traditional ASCII art
+ASCII_STYLE="detailed ASCII art"
+
+# Japanese characters for texture (creates photo-like effects)
+ASCII_STYLE="japanese unicode art"
+
+# Braille patterns for grayscale-like images
+ASCII_STYLE="braille art"
+
+# Emoji art for colorful representations
+ASCII_STYLE="emoji art"
+
+# Block characters for solid shapes
+ASCII_STYLE="block ASCII art"
+```
+
+### Custom Fetching
+
+```bash
+# Fetch with specific style request
+motd-fetch -p "Create a cyberpunk city using dense Unicode patterns"
+
+# Fetch Japanese-style art
+motd-fetch -p "Create art using Japanese kanji 龍火山水風 and hiragana あいうえお"
+
+# Fetch emoji art
+motd-fetch -p "Create a sunset scene using only emoji characters 🌅🌊🏖️"
+```
+
+### Display Options
+
+```bash
+# Show specific art by ID
+motd-show -i 392c621a
+
+# Show with decorative border
+motd-show -b
+
+# Center the art on screen
+motd-show -c
+```
+
 ## Directory Structure
 
 ```
-ascii-login/
+motdartisan/
 ├── README.md
 ├── config.example      # Example configuration
 ├── .env               # Your config (gitignored)
 ├── requirements.txt   # Python dependencies
-├── ascii-login.sh     # Shell wrapper script
+├── motdartisan.sh     # Shell wrapper script (ZSH/Bash compatible)
 ├── cache/             # Cached ASCII art (gitignored)
 ├── lib/
 │   ├── __init__.py
-│   ├── fetch.py       # OpenAI API interaction
-│   ├── display.py     # Display logic
+│   ├── fetch.py       # OpenAI API interaction with Unicode support
+│   ├── display.py     # Display logic with color themes
 │   └── cache.py       # Cache management
-└── main.py            # Main entry point
+└── main.py            # Main CLI entry point
 ```
 
 ## License
